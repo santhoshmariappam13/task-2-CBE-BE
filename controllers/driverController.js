@@ -8,9 +8,17 @@ exports.getDrivers = async (req, res) => {
 
 // @desc   Add new driver
 exports.addDriver = async (req, res) => {
-  const driver = new Driver(req.body);
-  const saved = await driver.save();
-  res.status(201).json(saved);
+  try {
+    const driver = new Driver(req.body);
+    const saved = await driver.save();
+    res.status(201).json({
+      message: "Driver created successfully",
+      driverId: saved._id,
+      driver: saved,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 // @desc   Update driver

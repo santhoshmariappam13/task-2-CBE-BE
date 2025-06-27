@@ -1,4 +1,4 @@
-const Ride = require('../models/rideModel');
+const Ride = require('../models/Ride');
 
 // Book a ride
 const bookRide = async (req, res) => {
